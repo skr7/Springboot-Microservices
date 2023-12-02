@@ -19,6 +19,8 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+
+
     @PostMapping("/add")
     public ResponseEntity<Department> saveDepartment(@RequestBody Department department) {
         log.info("Inside saveDepartment method of DepartmentController");
