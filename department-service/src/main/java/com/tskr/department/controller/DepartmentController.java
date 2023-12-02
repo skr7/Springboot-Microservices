@@ -4,7 +4,12 @@ import com.tskr.department.entity.Department;
 import com.tskr.department.service.DepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/departments")
@@ -15,15 +20,17 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @PostMapping("/add")
-    public Department saveDepartment(@RequestBody Department department) {
+    public ResponseEntity<Department> saveDepartment(@RequestBody Department department) {
         log.info("Inside saveDepartment method of DepartmentController");
-        return  departmentService.saveDepartment(department);
+        Department department1=departmentService.saveDepartment(department);
+        return  new ResponseEntity<>(department1,HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public Department findDepartmentById(@PathVariable("id") Long departmentId) {
+    public ResponseEntity<Department> findDepartmentById(@PathVariable("id") Long departmentId) {
         log.info("Inside findDepartmentById method of DepartmentController");
-        return departmentService.findDepartmentById(departmentId);
+        Department department= departmentService.findDepartmentById(departmentId);
+        return new ResponseEntity<Department>(department, HttpStatus.OK);
     }
 
 }
