@@ -1,4 +1,4 @@
-package com.tskr;
+package com.tskr.department;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
